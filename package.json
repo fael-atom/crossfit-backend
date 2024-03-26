@@ -1,0 +1,35 @@
+{
+  "name": "crossfit-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fael-atom/crossfit-backend.git"
+  },
+  "keywords": [
+    "crossfit"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fael-atom/crossfit-backend/issues"
+  },
+  "homepage": "https://github.com/fael-atom/crossfit-backend#readme",
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "4.19.2",
+    "mysql2": "^3.9.2",
+    "prisma": "^5.11.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.23.7"
+  }
+}
