@@ -1,8 +1,5 @@
-// src/controllers/ClientController.js
-
 import { z } from 'zod';
-import { ClientService } from '../services/ClientService';
-import { Client } from '../models/Client';
+import { ClientService } from '../services/ClientService.js';
 
 const clientSchema = z.object({
   name: z.string(),
@@ -54,4 +51,4 @@ class ClientController {
   }
 }
 
-export { ClientController };
+export default ClientController

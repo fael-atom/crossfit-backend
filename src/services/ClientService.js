@@ -1,11 +1,11 @@
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
 import { Client } from "../models/Client.js";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export class ClientService {
   async listClients() {
-    const clients = await prisma.cliente.findMany();
+    const clients = await prisma.client.findMany();
     return clients.map((client) => new Client(client));
   }
 

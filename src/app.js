@@ -1,4 +1,5 @@
 import express from 'express';
+import clientRouter from './routes/clientRoutes.js';
 
 export const app = express();
 
@@ -6,4 +7,4 @@ export const app = express();
 app.use(express.json());
 
 // Routes
-app.use('/clients', clientRoutes);
+app.use('/clients', clientRouter);

@@ -2,7 +2,7 @@ import { z } from "zod";
 
 // Esquema para validação de criação de cliente
 export const clientSchema = z.object({
-  nome: z.string().required(),
+  nome: z.string(),
   email: z.string().email(),
   telefone: z.string().optional(),
 });

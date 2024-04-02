@@ -1,6 +1,6 @@
-import { clientSchema, clientUpdateSchema } from " ../models/clientModel.js"
+import { clientSchema, clientUpdateSchema } from "../models/clientModel.js"
 
-const validateClient = (req, res, next) => {
+export const validateClient = (req, res, next) => {
   const newClient = req.body;
   try {
     clientSchema.parse(newClient);
@@ -10,7 +10,7 @@ const validateClient = (req, res, next) => {
   }
 };
 
-const validateClientUpdate = (req, res, next) => {
+export const validateClientUpdate = (req, res, next) => {
   const clientData = req.body;
   try {
     clientUpdateSchema.parse(clientData);
@@ -20,4 +20,4 @@ const validateClientUpdate = (req, res, next) => {
   }
 };
 
-module.exports = { validateClient, validateClientUpdate };
+

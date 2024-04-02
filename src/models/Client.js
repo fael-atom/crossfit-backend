@@ -1,8 +1,8 @@
-export class Cliente {
+export class Client {
   constructor(data) {
     this.id = data.id;
-    this.nome = data.nome;
+    this.name = data.name;
     this.email = data.email;
-    this.idade = data.idade;
+    this.age = data.age;
   }
 }
