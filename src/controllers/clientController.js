@@ -1,20 +1,31 @@
-import { z } from 'zod';
-import { ClientService } from '../services/ClientService.js';
-
-const clientSchema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  age: z.number().int(),
-});
+import { ClientService } from "../services/ClientService.js";
+import { clientSchema, clientUpdateSchema } from "../models/schemas/clientSchemas.js";
 
 class ClientController {
   constructor() {
     this.clientService = new ClientService();
   }
 
-  async listClients(req, res) {
-    const clients = await this.clientService.listClients();
-    res.json(clients);
+  async getClients(req, res) {
+    // Adicione os parâmetros req, res aqui
+    try {
+      const clients = await this.clientService.getClients();
+      return res.json(clients);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+  async getClientById(req, res) {
+    try {
+      const id = parseInt(req.params.id);
+      const client = await this.clientService.getClientById(id);
+      return res.json(client);
+    } catch (error) {
+      console.error(error);
+      return res.status(404).json({ message: "Client not found" });
+    }
   }
 
   async createClient(req, res) {
@@ -27,21 +38,15 @@ class ClientController {
     }
   }
 
-  async getClientById(req, res) {
-    const id = parseInt(req.params.id);
-    const client = await this.clientService.getClientById(id);
-    if (client) {
-      res.json(client);
-    } else {
-      res.status(404).json({ message: 'Client not found' });
-    }
-  }
-
   async updateClient(req, res) {
-    const id = parseInt(req.params.id);
-    const clientData = clientSchema.parse(req.body);
-    const client = await this.clientService.updateClient(id, clientData);
-    res.json(client);
+    try {
+      const id = parseInt(req.params.id);
+      const clientData = clientUpdateSchema.parse(req.body);
+      const client = await this.clientService.updateClient(id, clientData);
+      res.status(200).json(client);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
   }
 
   async deleteClient(req, res) {
@@ -51,4 +56,4 @@ class ClientController {
   }
 }
 
-export default ClientController
+export default ClientController;

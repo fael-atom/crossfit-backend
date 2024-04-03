@@ -3,6 +3,8 @@ export class Client {
     this.id = data.id;
     this.name = data.name;
     this.email = data.email;
-    this.age = data.age;
+    this.status = data.status;
+    this.createdAt = data.createdAt;
+    this.updatedAt = data.updatedAt;
   }
 }

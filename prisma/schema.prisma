@@ -8,12 +8,12 @@ datasource db {
 }
 
 model User {
-  id     Int     @id @default(autoincrement())
-  status Boolean @default(true)
-  name   String
-  email  String  @unique
+  id        Int      @id @default(autoincrement())
+  status    Boolean  @default(true)
+  name      String
+  email     String   @unique
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 
   @@map("users")
 }
@@ -30,12 +30,13 @@ model Product {
 }
 
 model Sale {
-  id        Int     @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   productId Int
   clientId  Int
   adminId   Int
-  product   Product @relation(fields: [productId], references: [id])
   createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id])
 
+  @@index([productId], map: "sales_productId_fkey")
   @@map("sales")
 }
