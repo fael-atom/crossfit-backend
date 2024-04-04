@@ -16,7 +16,7 @@ COPY ./prisma ./prisma
 RUN npx prisma generate
 
 # Execute Prisma Migrations
-RUN npx prisma migrate deploy
+RUN npx prisma migrate dev
 
 CMD [ "npm", "run", "dev" ]
 
