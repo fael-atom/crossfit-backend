@@ -10,4 +10,4 @@ app.disable("x-powered-by");
 app.use(express.json());
 app.use(cors());
 app.use("/clients", clientRouter);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
