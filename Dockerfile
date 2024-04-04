@@ -1,11 +1,23 @@
 # Development stage
 FROM node:18 as development
+
+# Set the server working directory
 WORKDIR /usr/src/app
+
+# Copy package.json and install dependencies
 COPY package*.json ./
 RUN npm install 
+
+# Copy the rest of the files
 COPY ./src ./src
 COPY ./prisma ./prisma
+
+# Generate Prisma Client 
 RUN npx prisma generate
+
+# Execute Prisma Migrations
+RUN npx prisma migrate deploy
+
 CMD [ "npm", "run", "dev" ]
 
 # Builder stage
