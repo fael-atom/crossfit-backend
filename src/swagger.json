@@ -1,6 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
+    "title": "Crossfit API",
     "description": "Endpoints da aplicação de Crossfit.",
     "version": "1.0.0"
   },
