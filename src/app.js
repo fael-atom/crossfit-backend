@@ -9,5 +9,6 @@ export const app = express();
 app.disable("x-powered-by");
 app.use(express.json());
 app.use(cors());
+app.get('/', (req, res) => res.redirect('/docs'))
 app.use("/clients", clientRouter);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
