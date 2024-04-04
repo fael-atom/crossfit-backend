@@ -2,8 +2,9 @@
 FROM node:18 as development
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm install
+RUN npm install 
 COPY ./src ./src
+RUN npx prisma generate
 CMD [ "npm", "run", "dev" ]
 
 # Builder stage
