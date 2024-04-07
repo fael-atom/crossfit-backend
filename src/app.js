@@ -1,5 +1,5 @@
 import express from "express";
-import userRouter from "./routes/clientRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 import { corsMiddleware } from "./middlewares/cors.js";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
