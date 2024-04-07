@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://crossfit-backend.onrender.com/",
+      "url": "http://localhost:3000",
       "description": "Development server"
     }
   ],
@@ -15,7 +15,7 @@
     "/users": {
       "get": {
         "summary": "Lista todos os usuários",
-        "tags": ["Clients"],
+        "tags": ["users"],
         "description": "Retorna uma lista de todos os usuários",
         "responses": {
           "200": {
@@ -47,7 +47,7 @@
       },
       "post": {
         "summary": "Cria um novo usuário",
-        "tags": ["Clients"],
+        "tags": ["users"],
         "description": "Cria um novo usuário com os dados fornecidos",
         "requestBody": {
           "required": true,
@@ -98,7 +98,7 @@
     "/users/{id}": {
       "get": {
         "summary": "Obtém um usuário pelo ID",
-        "tags": ["Clients"],
+        "tags": ["users"],
         "description": "Retorna os detalhes de um usuário específico",
         "parameters": [
           {
@@ -141,7 +141,7 @@
       },
       "patch": {
         "summary": "Atualiza um usuário pelo ID",
-        "tags": ["Clients"],
+        "tags": ["users"],
         "description": "Atualiza os dados de um usuário específico",
         "parameters": [
           {
@@ -169,7 +169,7 @@
                     "format": "email"
                   }
                 },
-                "required": ["name", "email"]
+                "required": []
               }
             }
           }

@@ -8,8 +8,6 @@ import {
 const userRouter = express.Router();
 const userController = new UserController();
 
-// userRouter.get("/", userController.getUsers);
-
 userRouter.get(
   "/",
   async (req, res) => await userController.getUsers(req, res)

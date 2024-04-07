@@ -19,3 +19,13 @@ export const validateUserUpdate = (req, res, next) => {
     res.status(400).json({ error: error.errors });
   }
 };
+
+export const validateProduct = (req, res, next) => {
+  const newProduct = req.body;
+  try {
+    userSchema.parse(newProduct);
+    next();
+  } catch (error) {
+    res.status(400).json({ error: error.errors });
+  }
+};
