@@ -1,5 +1,5 @@
 import { UserService } from "../services/UserService.js";
-import { UserSchema, UserUpdateSchema } from "../models/schemas/UserSchemas.js";
+import { userSchema, userUpdateSchema } from "../models/schemas/userSchema.js";
 
 class UserController {
   constructor() {
@@ -29,7 +29,7 @@ class UserController {
 
   async createUser(req, res) {
     try {
-      const UserData = UserSchema.parse(req.body);
+      const UserData = userSchema.parse(req.body);
       const User = await this.UserService.createUser(UserData);
       res.status(201).json(User);
     } catch (error) {
@@ -40,7 +40,7 @@ class UserController {
   async updateUser(req, res) {
     try {
       const id = parseInt(req.params.id);
-      const UserData = UserUpdateSchema.parse(req.body);
+      const UserData = userUpdateSchema.parse(req.body);
       const User = await this.UserService.updateUser(id, UserData);
       res.status(200).json(User);
     } catch (error) {

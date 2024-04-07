@@ -1,23 +1,21 @@
-import { clientSchema, clientUpdateSchema } from "../models/schemas/userSchema.js"
+import { userSchema, userUpdateSchema } from "../models/schemas/userSchema.js";
 
-export const validateClient = (req, res, next) => {
-  const newClient = req.body;
+export const validateUser = (req, res, next) => {
+  const newUser = req.body;
   try {
-    clientSchema.parse(newClient);
+    userSchema.parse(newUser);
     next();
   } catch (error) {
     res.status(400).json({ error: error.errors });
   }
 };
 
-export const validateClientUpdate = (req, res, next) => {
-  const clientData = req.body;
+export const validateUserUpdate = (req, res, next) => {
+  const userData = req.body;
   try {
-    clientUpdateSchema.parse(clientData);
+    userUpdateSchema.parse(userData);
     next();
   } catch (error) {
     res.status(400).json({ error: error.errors });
   }
 };
-
-

@@ -1,24 +1,35 @@
 import express from "express";
-import ClientController from "../controllers/UserController.js";
-import { validateClient, validateClientUpdate } from "../middlewares/validations.js";
+import UserController from "../controllers/UserController.js";
+import {
+  validateUser,
+  validateUserUpdate,
+} from "../middlewares/validations.js";
 
-const clientRouter = express.Router();
-const clientController = new ClientController();
+const userRouter = express.Router();
+const userController = new UserController();
 
-// clientRouter.get("/", clientController.getClients);
+// userRouter.get("/", userController.getUsers);
 
-clientRouter.get(
+userRouter.get(
   "/",
-  async (req, res) => await clientController.getClients(req, res)
+  async (req, res) => await userController.getUsers(req, res)
 );
 
-clientRouter.get(
+userRouter.get(
   "/:id",
-  async (req, res) => await clientController.getClientById(req, res)
+  async (req, res) => await userController.getUserById(req, res)
 );
 
-clientRouter.post("/", validateClientUpdate, async (req, res) => await clientController.createClient(req, res));
+userRouter.post(
+  "/",
+  validateUserUpdate,
+  async (req, res) => await userController.createUser(req, res)
+);
 
-clientRouter.patch("/:id", validateClientUpdate, async (req, res) => await clientController.updateClient(req, res));
+userRouter.patch(
+  "/:id",
+  validateUserUpdate,
+  async (req, res) => await userController.updateUser(req, res)
+);
 
-export default clientRouter;
+export default userRouter;
