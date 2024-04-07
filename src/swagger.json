@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000",
+      "url": "https://crossfit-backend.onrender.com/",
       "description": "Development server"
     }
   ],
@@ -199,6 +199,254 @@
           },
           "404": {
             "description": "usuário não encontrado"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "summary": "Lista todos os produtos",
+        "tags": ["products"],
+        "description": "Retorna uma lista de todos os produtos",
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "unitPrice": {
+                        "type": "number"
+                      },
+                      "stockQuantity": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo produto",
+        "tags": ["products"],
+        "description": "Cria um novo produto com os dados fornecidos",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "unitPrice": {
+                    "type": "number"
+                  },
+                  "stockQuantity": {
+                    "type": "integer"
+                  }
+                },
+                "required": ["name", "type", "unitPrice", "stockQuantity"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "produto criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "unitPrice": {
+                      "type": "number"
+                    },
+                    "stockQuantity": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Obtém um produto pelo ID",
+        "tags": ["products"],
+        "description": "Retorna os detalhes de um produto específico",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do produto",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "produto encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "unitPrice": {
+                      "type": "number"
+                    },
+                    "stockQuantity": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "produto não encontrado"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualiza um produto pelo ID",
+        "tags": ["products"],
+        "description": "Atualiza os dados de um produto específico",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do produto",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "unitPrice": {
+                    "type": "number"
+                  },
+                  "stockQuantity": {
+                    "type": "integer"
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "produto atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "unitPrice": {
+                      "type": "number"
+                    },
+                    "stockQuantity": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "produto não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta um produto pelo ID",
+        "tags": ["products"],
+        "description": "Deleta um produto específico",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do produto",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "produto deletado com sucesso"
+          },
+          "404": {
+            "description": "produto não encontrado"
           }
         }
       }

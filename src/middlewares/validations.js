@@ -1,4 +1,5 @@
 import { userSchema, userUpdateSchema } from "../models/schemas/userSchema.js";
+import { productSchema, productUpdateSchema } from "../models/schemas/productSchema.js";
 
 export const validateUser = (req, res, next) => {
   const newUser = req.body;
@@ -23,7 +24,17 @@ export const validateUserUpdate = (req, res, next) => {
 export const validateProduct = (req, res, next) => {
   const newProduct = req.body;
   try {
-    userSchema.parse(newProduct);
+    productSchema.parse(newProduct);
+    next();
+  } catch (error) {
+    res.status(400).json({ error: error.errors });
+  }
+};
+
+export const validateProductUpdate = (req, res, next) => {
+  const productData = req.body;
+  try {
+    productUpdateSchema.parse(productData);
     next();
   } catch (error) {
     res.status(400).json({ error: error.errors });

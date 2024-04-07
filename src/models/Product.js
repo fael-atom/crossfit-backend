@@ -1,25 +1,23 @@
 export class Product {
   constructor(data) {
-    setProduct(data);
+    this.setProduct(data);
   }
 
   getProduct() {
     return {
+      id: this.id,
       name: this.name,
       type: this.type,
       unitPrice: this.unitPrice,
       stockQuantity: this.stockQuantity,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
     };
   }
 
   setProduct(data) {
+    this.id = data.id;
     this.name = data.name;
     this.type = data.type;
-    this.unitPrice = data.UnitPrice;
-    this.stockQuantity = data.quantity;
-    this.createdAt = data.createdAt;
-    this.updatedAt = data.updatedAt;
+    this.unitPrice = data.unitPrice;
+    this.stockQuantity = data.stockQuantity;
   }
 }

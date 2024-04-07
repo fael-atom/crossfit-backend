@@ -23,8 +23,8 @@ model Product {
   id            Int    @id @default(autoincrement())
   name          String @unique
   type          String
-  stockQuantity Int
   unitPrice     Float
+  stockQuantity Int
   Sale          Sale[]
 
   @@map("products")

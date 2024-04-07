@@ -12,14 +12,14 @@ export class ProductService {
 
   async getProductById(id) {
     const productData = await prisma.product.findUnique({ where: { id: id } });
-    const productInstance = new User(productData);
+    const productInstance = new Product(productData);
     return productInstance.getProduct();
   }
 
   async createProduct(data) {
     const productData = await prisma.product.create({ data });
     const productInstance = new Product(productData);
-    return productInstance;
+    return productInstance.getProduct();
   }
 
   async updateProduct(id, data) {
@@ -29,5 +29,11 @@ export class ProductService {
     });
     const productInstance = new Product(productDataUpdated);
     return productInstance.getProduct();
+  }
+
+  async deleteProduct(id) {
+    const productData = await prisma.product.delete({ where: { id: id } });
+    const productInstance = new Product(productData);
+    return productInstance;
   }
 }
