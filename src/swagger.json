@@ -12,11 +12,11 @@
     }
   ],
   "paths": {
-    "/clients": {
+    "/users": {
       "get": {
-        "summary": "Lista todos os clientes",
+        "summary": "Lista todos os usuários",
         "tags": ["Clients"],
-        "description": "Retorna uma lista de todos os clientes",
+        "description": "Retorna uma lista de todos os usuários",
         "responses": {
           "200": {
             "description": "Sucesso",
@@ -46,9 +46,9 @@
         }
       },
       "post": {
-        "summary": "Cria um novo cliente",
+        "summary": "Cria um novo usuário",
         "tags": ["Clients"],
-        "description": "Cria um novo cliente com os dados fornecidos",
+        "description": "Cria um novo usuário com os dados fornecidos",
         "requestBody": {
           "required": true,
           "content": {
@@ -71,7 +71,7 @@
         },
         "responses": {
           "201": {
-            "description": "Cliente criado com sucesso",
+            "description": "usuário criado com sucesso",
             "content": {
               "application/json": {
                 "schema": {
@@ -95,17 +95,17 @@
         }
       }
     },
-    "/clients/{id}": {
+    "/users/{id}": {
       "get": {
-        "summary": "Obtém um cliente pelo ID",
+        "summary": "Obtém um usuário pelo ID",
         "tags": ["Clients"],
-        "description": "Retorna os detalhes de um cliente específico",
+        "description": "Retorna os detalhes de um usuário específico",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "ID do cliente",
+            "description": "ID do usuário",
             "schema": {
               "type": "integer"
             }
@@ -113,7 +113,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Cliente encontrado",
+            "description": "usuário encontrado",
             "content": {
               "application/json": {
                 "schema": {
@@ -135,20 +135,20 @@
             }
           },
           "404": {
-            "description": "Cliente não encontrado"
+            "description": "usuário não encontrado"
           }
         }
       },
       "patch": {
-        "summary": "Atualiza um cliente pelo ID",
+        "summary": "Atualiza um usuário pelo ID",
         "tags": ["Clients"],
-        "description": "Atualiza os dados de um cliente específico",
+        "description": "Atualiza os dados de um usuário específico",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "ID do cliente",
+            "description": "ID do usuário",
             "schema": {
               "type": "integer"
             }
@@ -176,7 +176,7 @@
         },
         "responses": {
           "200": {
-            "description": "Cliente atualizado com sucesso",
+            "description": "usuário atualizado com sucesso",
             "content": {
               "application/json": {
                 "schema": {
@@ -198,7 +198,7 @@
             }
           },
           "404": {
-            "description": "Cliente não encontrado"
+            "description": "usuário não encontrado"
           }
         }
       }
