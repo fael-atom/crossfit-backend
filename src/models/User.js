@@ -1,0 +1,25 @@
+export class User {
+  constructor(data) {
+    this.setUser(data);
+  }
+
+  getUser() {
+    return {
+      id: this.id,
+      name: this.name,
+      email: this.email,
+      status: this.status,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    };
+  }
+
+  setUser(data) {
+    this.id = data.id;
+    this.name = data.name;
+    this.email = data.email;
+    this.status = data.status;
+    this.createdAt = data.createdAt;
+    this.updatedAt = data.updatedAt;
+  }
+}

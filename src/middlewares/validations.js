@@ -1,4 +1,4 @@
-import { clientSchema, clientUpdateSchema } from "../models/schemas/clientSchemas.js"
+import { clientSchema, clientUpdateSchema } from "../models/schemas/userSchema.js"
 
 export const validateClient = (req, res, next) => {
   const newClient = req.body;

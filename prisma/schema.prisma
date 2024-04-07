@@ -9,7 +9,8 @@ datasource db {
 
 model User {
   id        Int      @id @default(autoincrement())
-  status    Boolean  @default(true)
+  status    Int      @default(1)
+  adminId   Int      @default(0)
   name      String
   email     String   @unique
   createdAt DateTime @default(now())
@@ -19,21 +20,21 @@ model User {
 }
 
 model Product {
-  id         Int    @id @default(autoincrement())
-  name       String
-  type       String
-  quantity   Int
-  unit_price Float
-  Sale       Sale[]
+  id            Int    @id @default(autoincrement())
+  name          String @unique
+  type          String
+  stockQuantity Int
+  unitPrice     Float
+  Sale          Sale[]
 
   @@map("products")
 }
 
 model Sale {
-  id        Int      @id @default(autoincrement())
+  id        Int @id @default(autoincrement())
   productId Int
   clientId  Int
-  adminId   Int
+
   createdAt DateTime @default(now())
   product   Product  @relation(fields: [productId], references: [id], map: "sales_product_fkey")
 
