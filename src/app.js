@@ -5,6 +5,7 @@ import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "./swagger.json" assert { type: "json" };
 import productRouter from "./routes/productRoutes.js";
+import salesRouter from "./routes/salesRoutes.js";
 
 export const app = express();
 app.disable("x-powered-by");
@@ -13,4 +14,5 @@ app.use(cors());
 app.get("/", (req, res) => res.redirect("/docs"));
 app.use("/users", userRouter);
 app.use("/products", productRouter);
+app.use("/sales", salesRouter);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
