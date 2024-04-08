@@ -1,0 +1,66 @@
+import { SalesService } from "../services/SalesService.js";
+import {
+  salesSchema,
+  salesUpdateSchema,
+} from "../models/schemas/salesSchema.js";
+
+class SalesController {
+  constructor() {
+    this.SalesService = new SalesService();
+  }
+
+  async getSales(req, res) {
+    try {
+      const sales = await this.SalesService.getSales();
+      return res.json(sales);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+  async getSaleById(req, res) {
+    try {
+      const id = parseInt(req.params.id);
+      const sales = await this.SalesService.getSaleById(id);
+      return res.json(sales);
+    } catch (error) {
+      console.error(error);
+      return res.status(404).json({ message: "Product not found" });
+    }
+  }
+
+  async createSale(req, res) {
+    try {
+      const salesData = salesSchema.parse(req.body);
+      const sales = await this.SalesService.createSale(salesData);
+      res.status(201).json(sales);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
+
+  async updateSale(req, res) {
+    try {
+      const id = parseInt(req.params.id);
+      const saleData = salesUpdateSchema.parse(req.body);
+      const sales = await this.SalesService.updateSale(id, saleData);
+      res.status(200).json(sales);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
+
+  async deleteSale(req, res) {
+    try {
+      const id = parseInt(req.params.id);
+      const sale = await this.SalesService.deleteSale(id);
+      return res.json(sale);
+    } catch (error) {
+      console.error(error);
+      return res.status(404).json({ message: "Sale not found" });
+    }
+  }
+}
+
+export default SalesController;

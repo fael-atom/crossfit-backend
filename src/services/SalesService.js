@@ -10,19 +10,19 @@ export class SalesService {
     });
   }
 
-  async getSalesById(id) {
+  async getSaleById(id) {
     const salesData = await prisma.sale.findUnique({ where: { id: id } });
     const salesInstance = new Sales(salesData);
     return salesInstance.getSales();
   }
 
-  async createSales(data) {
+  async createSale(data) {
     const salesData = await prisma.sale.create({ data });
     const salesInstance = new Sales(salesData);
     return salesInstance.getSales();
   }
 
-  async updateSales(id, data) {
+  async updateSale(id, data) {
     const salesDataUpdated = await prisma.sale.update({
       where: { id: id },
       data,
@@ -31,7 +31,7 @@ export class SalesService {
     return salesInstance.getSales();
   }
 
-  async deleteSales(id) {
+  async deleteSale(id) {
     const salesData = await prisma.sale.delete({ where: { id: id } });
     const salesInstance = new Sales(salesData);
     return salesInstance;
