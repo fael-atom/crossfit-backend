@@ -33,8 +33,8 @@ class SalesController {
   async createSale(req, res) {
     try {
       const salesData = salesSchema.parse(req.body);
-      const sales = await this.SalesService.createSale(salesData);
-      res.status(201).json(sales);
+      const sale = await this.SalesService.createSale(salesData);
+      res.status(201).json(sale);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
@@ -44,8 +44,8 @@ class SalesController {
     try {
       const id = parseInt(req.params.id);
       const saleData = salesUpdateSchema.parse(req.body);
-      const sales = await this.SalesService.updateSale(id, saleData);
-      res.status(200).json(sales);
+      const sale = await this.SalesService.updateSale(id, saleData);
+      res.status(200).json(sale);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

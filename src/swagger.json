@@ -450,6 +450,218 @@
           }
         }
       }
+    },
+    "/sales": {
+      "get": {
+        "summary": "Lista todos as vendas",
+        "tags": ["sales"],
+        "description": "Retorna uma lista de todas as vendas",
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "productId": {
+                        "type": "integer"
+                      },
+                      "type": {
+                        "userId": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria uma nova venda",
+        "tags": ["sales"],
+        "description": "Cria uma nova venda com os dados fornecidos",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "type": "integer"
+                  },
+                  "userId": {
+                    "type": "integer"
+                  }
+                },
+                "required": ["productId", "userId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "venda criada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "productId": {
+                      "type": "integer"
+                    },
+                    "userId": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sales/{id}": {
+      "get": {
+        "summary": "Obtém uma venda pelo ID",
+        "tags": ["sales"],
+        "description": "Retorna os detalhes de uma venda específica",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da venda",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "venda encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "productId": {
+                      "type": "integer"
+                    },
+                    "userId": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "venda não encontrada"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualiza uma venda pelo ID",
+        "tags": ["sales"],
+        "description": "Atualiza os dados de uma venda específica",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da venda",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "productId": {
+                    "type": "integer"
+                  },
+                  "userId": {
+                    "type": "integer"
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "venda atualizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "productId": {
+                      "type": "integer"
+                    },
+                    "userId": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "venda não encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta uma venda pelo ID",
+        "tags": ["sales"],
+        "description": "Deleta uma venda específica",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da venda",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "venda deletada com sucesso"
+          },
+          "404": {
+            "description": "venda não encontrado"
+          }
+        }
+      }
     }
   }
 }

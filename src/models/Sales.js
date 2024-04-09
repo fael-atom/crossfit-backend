@@ -6,8 +6,8 @@ export class Sales {
   getSales() {
     return {
       id: this.id,
-      productId: this.name,
-      userId: this.type,
+      productId: this.productId,
+      userId: this.userId,
       createdAt: this.createdAt
     };
   }

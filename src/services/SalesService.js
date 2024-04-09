@@ -1,4 +1,4 @@
-import Sales from "../models/Sales.js";
+import { Sales } from "../models/Sales.js";
 import { prisma } from "../libs/prisma.js";
 
 export class SalesService {
