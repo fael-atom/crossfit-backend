@@ -3,7 +3,7 @@ import userRouter from "./routes/userRoutes.js";
 import { corsMiddleware } from "./middlewares/cors.js";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-import swaggerDocument from "./swagger.json" assert { type: "json" };
+import swaggerDocument from "./docs/swagger.json" assert { type: "json" };
 import productRouter from "./routes/productRoutes.js";
 import salesRouter from "./routes/salesRoutes.js";
 
