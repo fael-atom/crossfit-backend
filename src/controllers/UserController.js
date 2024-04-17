@@ -16,6 +16,17 @@ class UserController {
     }
   }
 
+  async getUsersByName(req, res) {
+    try {
+      const { name } = req.query;
+      const Users = await this.UserService.getUsersByName(name);
+      return res.json(Users);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
   async getUserById(req, res) {
     try {
       const id = parseInt(req.params.id);

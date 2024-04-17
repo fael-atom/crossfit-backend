@@ -8,10 +8,15 @@ import {
 const userRouter = express.Router();
 const userController = new UserController();
 
-userRouter.get(
-  "/",
-  async (req, res) => await userController.getUsers(req, res)
-);
+userRouter.get("/", async (req, res) => {
+  const { name } = req.query;
+
+  if (name) {
+    return await userController.getUsersByName(req, res);
+  } else {
+    return await userController.getUsers(req, res);
+  }
+});
 
 userRouter.get(
   "/:id",

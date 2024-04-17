@@ -17,6 +17,17 @@
         "summary": "Lista todos os usuários",
         "tags": ["users"],
         "description": "Retorna uma lista de todos os usuários",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Filtrar usuários por nome",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Sucesso",

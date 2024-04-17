@@ -10,6 +10,22 @@ export class UserService {
     });
   }
 
+  async getUsersByName(name) {
+    const firstName = name.split(" ")[0];
+    const users = await prisma.user.findMany({
+      where: {
+        name: {
+          startsWith: firstName,
+          mode: "insensitive",
+        },
+      },
+    });
+    return users.map((userData) => {
+      const userInstance = new User(userData);
+      return userInstance.getUser();
+    });
+  }
+
   async getUserById(id) {
     const userData = await prisma.user.findUnique({ where: { id: id } });
     const userInstance = new User(userData);
