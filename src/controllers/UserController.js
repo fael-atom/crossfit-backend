@@ -27,6 +27,17 @@ class UserController {
     }
   }
 
+  async getUsersByEmail(req, res) {
+    try {
+      const { email } = req.query;
+      const Users = await this.UserService.getUsersByEmail(email);
+      return res.json(Users);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
   async getUserById(req, res) {
     try {
       const id = parseInt(req.params.id);

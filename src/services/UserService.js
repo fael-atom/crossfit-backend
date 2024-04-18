@@ -26,6 +26,21 @@ export class UserService {
     });
   }
 
+  async getUsersByEmail(email) {
+    const users = await prisma.user.findMany({
+      where: {
+        email: {
+          startsWith: email,
+          mode: "insensitive",
+        },
+      },
+    });
+    return users.map((userData) => {
+      const userInstance = new User(userData);
+      return userInstance.getUser();
+    });
+  }
+
   async getUserById(id) {
     const userData = await prisma.user.findUnique({ where: { id: id } });
     const userInstance = new User(userData);

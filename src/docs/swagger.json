@@ -26,6 +26,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Filtrar usuários por email",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
