@@ -8,6 +8,7 @@ export class User {
       id: this.id,
       name: this.name,
       email: this.email,
+      phone: this.phone,
       status: this.status,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
@@ -18,6 +19,7 @@ export class User {
     this.id = data.id;
     this.name = data.name;
     this.email = data.email;
+    this.phone = data.phone;
     this.status = data.status;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
