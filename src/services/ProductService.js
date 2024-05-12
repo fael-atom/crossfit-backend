@@ -1,5 +1,7 @@
 import { Product } from "../models/Product.js";
 import { prisma } from "../libs/prisma.js";
+import { v4 as uuidv4, v4 } from 'uuid';
+import fs from "fs";
 
 export class ProductService {
   async getProducts() {
@@ -17,7 +19,16 @@ export class ProductService {
   }
 
   async createProduct(data) {
-    const productData = await prisma.product.create({ data });
+    const fileName = `${v4()}.png`;
+    const filePath = `./public/images/${fileName}`;
+    fs.writeFileSync(filePath, data.pictureBinary, "base64");
+    const imageUrl = `https://crossfit-backend.onrender.com/static/images/${fileName}`;
+    delete data.pictureBinary;
+    const dataModified = {
+      ...data,
+      picture: imageUrl,
+    };
+    const productData = await prisma.product.create({ data: dataModified });
     const productInstance = new Product(productData);
     return productInstance.getProduct();
   }

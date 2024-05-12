@@ -10,6 +10,7 @@ export class Product {
       type: this.type,
       unitPrice: this.unitPrice,
       stockQuantity: this.stockQuantity,
+      picture: this.picture,
     };
   }
 
@@ -19,5 +20,6 @@ export class Product {
     this.type = data.type;
     this.unitPrice = data.unitPrice;
     this.stockQuantity = data.stockQuantity;
+    this.picture = data.picture;
   }
 }

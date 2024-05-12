@@ -1,6 +1,7 @@
 import { ProductService } from "../services/ProductService.js";
 import {
   productSchema,
+  productCreateSchema,
   productUpdateSchema,
 } from "../models/schemas/productSchema.js";
 
@@ -32,7 +33,7 @@ class ProductController {
 
   async createProduct(req, res) {
     try {
-      const productData = productSchema.parse(req.body);
+      const productData = productCreateSchema.parse(req.body);
       const product = await this.ProductService.createProduct(productData);
       res.status(201).json(product);
     } catch (error) {
