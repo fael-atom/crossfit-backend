@@ -22,7 +22,8 @@ export class ProductService {
     try {
       data.unitPrice = parseFloat(data.unitPrice);
       data.stockQuantity = parseInt(data.stockQuantity);
-      const productDataWithImage = { ...data, picture: `https://crossfit-backend.onrender.com/${file.path}`};
+      console.log(file);
+      const productDataWithImage = { ...data, picture: `https://crossfit-backend.onrender.com/static/images/${file.filename}`};
       const productData = await prisma.product.create({
         data: productDataWithImage,
       });

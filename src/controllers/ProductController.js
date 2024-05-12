@@ -35,8 +35,6 @@ class ProductController {
     try {
       const productData = req.body;
       const file = req.file;
-      const imageUrl = `/images/${file.filename}`;
-      productData.picture = imageUrl;
       const createdProduct = await this.ProductService.createProduct(
         productData,
         file

@@ -12,8 +12,8 @@ const productController = new ProductController();
 const storage = multer.diskStorage({
   destination: "./public/images",
   filename: function (req, file, cb) {
-    const ext = path.extname(file.originalname); // Obtenha a extensão do arquivo original
-    cb(null, file.originalname + "-" + Date.now() + ext); // Adicione a extensão ao nome de destino
+    const ext = path.extname(file.originalname);
+    cb(null, file.originalname + "-" + Date.now() + ext);
   },
 });
 const picture = multer({ storage: storage });
