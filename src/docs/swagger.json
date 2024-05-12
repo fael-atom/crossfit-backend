@@ -271,7 +271,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
@@ -287,8 +287,9 @@
                   "stockQuantity": {
                     "type": "integer"
                   },
-                  "pictureBinary": {
-                    "type": "integer"
+                  "picture": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 },
                 "required": ["name", "type", "unitPrice", "stockQuantity"]

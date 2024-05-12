@@ -6,7 +6,7 @@ export const productCreateSchema = z.object({
   type: z.string(),
   unitPrice: z.number(),
   stockQuantity: z.number(),
-  pictureBinary: z.string().optional(),
+  picture: z.string().optional(),
 });
 
 export const productSchema = z.object({

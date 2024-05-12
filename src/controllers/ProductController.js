@@ -33,11 +33,17 @@ class ProductController {
 
   async createProduct(req, res) {
     try {
-      const productData = productCreateSchema.parse(req.body);
-      const product = await this.ProductService.createProduct(productData);
-      res.status(201).json(product);
+      const productData = req.body;
+      const file = req.file;
+      const imageUrl = `/images/${file.filename}`;
+      productData.picture = imageUrl;
+      const createdProduct = await this.ProductService.createProduct(
+        productData,
+        file
+      );
+      res.status(201).json(createdProduct);
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(500).json({ error: error.message });
     }
   }
 

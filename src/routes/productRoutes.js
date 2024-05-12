@@ -1,5 +1,7 @@
 import express from "express";
+import path from "path";
 import ProductController from "../controllers/ProductController.js";
+import multer from "multer";
 import {
   validateProduct,
   validateProductUpdate,
@@ -7,6 +9,14 @@ import {
 
 const productRouter = express.Router();
 const productController = new ProductController();
+const storage = multer.diskStorage({
+  destination: "./public/images",
+  filename: function (req, file, cb) {
+    const ext = path.extname(file.originalname); // Obtenha a extensão do arquivo original
+    cb(null, file.originalname + "-" + Date.now() + ext); // Adicione a extensão ao nome de destino
+  },
+});
+const picture = multer({ storage: storage });
 
 productRouter.get(
   "/",
@@ -20,7 +30,8 @@ productRouter.get(
 
 productRouter.post(
   "/",
-  validateProductUpdate,
+  // validateProductUpdate,
+  picture.single("picture"),
   async (req, res) => await productController.createProduct(req, res)
 );
 

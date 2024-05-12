@@ -1,6 +1,6 @@
 import { Product } from "../models/Product.js";
 import { prisma } from "../libs/prisma.js";
-import { v4 as uuidv4, v4 } from 'uuid';
+import { v4 as uuidv4, v4 } from "uuid";
 import fs from "fs";
 
 export class ProductService {
@@ -18,21 +18,20 @@ export class ProductService {
     return productInstance.getProduct();
   }
 
-  async createProduct(data) {
-    const fileName = `${v4()}.png`;
-    const filePath = `./public/images/${fileName}`;
-    fs.writeFileSync(filePath, data.pictureBinary, "base64");
-    const imageUrl = `https://crossfit-backend.onrender.com/static/images/${fileName}`;
-    delete data.pictureBinary;
-    const dataModified = {
-      ...data,
-      picture: imageUrl,
-    };
-    const productData = await prisma.product.create({ data: dataModified });
-    const productInstance = new Product(productData);
-    return productInstance.getProduct();
+  async createProduct(data, file) {
+    try {
+      data.unitPrice = parseFloat(data.unitPrice);
+      data.stockQuantity = parseInt(data.stockQuantity);
+      const productDataWithImage = { ...data, picture: file.path };
+      const productData = await prisma.product.create({
+        data: productDataWithImage,
+      });
+      const productInstance = new Product(productData);
+      return productInstance.getProduct();
+    } catch (error) {
+      throw new Error("Erro ao criar o produto: " + error.message);
+    }
   }
-
   async updateProduct(id, data) {
     const productDataUpdated = await prisma.product.update({
       where: { id: id },
