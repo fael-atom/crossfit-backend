@@ -252,6 +252,9 @@
                       },
                       "stockQuantity": {
                         "type": "integer"
+                      },
+                      "picture": {
+                        "type": "integer"
                       }
                     }
                   }
@@ -283,6 +286,9 @@
                   },
                   "stockQuantity": {
                     "type": "integer"
+                  },
+                  "pictureBinary": {
+                    "type": "integer"
                   }
                 },
                 "required": ["name", "type", "unitPrice", "stockQuantity"]
@@ -312,6 +318,9 @@
                     },
                     "stockQuantity": {
                       "type": "integer"
+                    },
+                    "picture": {
+                      "type": "string"
                     }
                   }
                 }

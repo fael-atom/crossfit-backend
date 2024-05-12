@@ -27,7 +27,7 @@ model Product {
   type          String
   unitPrice     Float
   stockQuantity Int
-  picture       Bytes?
+  picture       String?
   createdAt     DateTime @default(now())
   Sale          Sale[]
 
