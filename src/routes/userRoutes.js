@@ -1,5 +1,7 @@
 import express from "express";
+import path from "path";
 import UserController from "../controllers/UserController.js";
+import multer from "multer";
 import {
   validateUser,
   validateUserUpdate,
@@ -7,6 +9,14 @@ import {
 
 const userRouter = express.Router();
 const userController = new UserController();
+const storage = multer.diskStorage({
+  destination: "./public/images",
+  filename: function (req, file, cb) {
+    const ext = path.extname(file.originalname);
+    cb(null, file.originalname + "-" + Date.now() + ext);
+  },
+});
+const picture = multer({ storage: storage });
 
 userRouter.get("/", async (req, res) => {
   const { name, email } = req.query;
@@ -27,7 +37,8 @@ userRouter.get(
 
 userRouter.post(
   "/",
-  validateUserUpdate,
+  // validateUserUpdate,
+  picture.single("picture"),
   async (req, res) => await userController.createUser(req, res)
 );
 

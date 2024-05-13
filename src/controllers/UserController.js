@@ -51,9 +51,10 @@ class UserController {
 
   async createUser(req, res) {
     try {
-      const UserData = userSchema.parse(req.body);
-      const User = await this.UserService.createUser(UserData);
-      res.status(201).json(User);
+      const UserData = req.body;
+      const file = req.file;
+      const createdUser = await this.UserService.createUser(UserData, file);
+      res.status(201).json(createdUser);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

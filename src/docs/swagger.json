@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://crossfit-backend.onrender.com/",
+      "url": "http://localhost:3000",
       "description": "Development server"
     }
   ],
@@ -72,7 +72,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
@@ -82,9 +82,16 @@
                   "email": {
                     "type": "string",
                     "format": "email"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "picture": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 },
-                "required": ["name", "email"]
+                "required": ["name", "email", "phone"]
               }
             }
           }
@@ -97,17 +104,20 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
-                      "type": "integer"
-                    },
                     "name": {
                       "type": "string"
                     },
                     "email": {
-                      "type": "string",
-                      "format": "email"
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "picture": {
+                      "type": "string"
                     }
-                  }
+                  },
+                  "required": ["name", "email", "phone"]
                 }
               }
             }

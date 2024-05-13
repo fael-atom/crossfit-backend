@@ -10,6 +10,7 @@ export class User {
       email: this.email,
       phone: this.phone,
       status: this.status,
+      picture: this.picture,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
     };
@@ -21,6 +22,7 @@ export class User {
     this.email = data.email;
     this.phone = data.phone;
     this.status = data.status;
+    this.picture = data.picture;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
   }

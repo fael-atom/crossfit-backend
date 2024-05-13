@@ -47,10 +47,20 @@ export class UserService {
     return userInstance.getUser();
   }
 
-  async createUser(data) {
-    const userData = await prisma.user.create({ data });
-    const userInstance = new User(userData);
-    return userInstance;
+  async createUser(data, file) {
+    try {
+      const userDataWithImage = {
+        ...data,
+        picture: `https://crossfit-backend.onrender.com/static/images/${file.filename}`,
+      };
+      const userData = await prisma.user.create({
+        data: userDataWithImage,
+      });
+      const userInstance = new User(userData);
+      return userInstance;
+    } catch (error) {
+      throw new Error("Erro ao criar usuário: " + error.message);
+    }
   }
 
   async updateUser(id, data) {

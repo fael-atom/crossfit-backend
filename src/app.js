@@ -9,7 +9,7 @@ import salesRouter from "./routes/salesRoutes.js";
 
 export const app = express();
 app.disable("x-powered-by");
-app.use(express.json("5000kb"));
+app.use(express.json("5mb"));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.get("/", (req, res) => res.redirect("/docs"));
