@@ -6,16 +6,16 @@ export class Sales {
   getSales() {
     return {
       id: this.id,
-      productId: this.productId,
       userId: this.userId,
-      createdAt: this.createdAt
+      salesProductsInfo: this.salesProductsInfo,
+      createdAt: this.createdAt,
     };
   }
 
   setSales(data) {
     this.id = data.id;
-    this.productId = data.productId;
     this.userId = data.userId;
+    this.salesProductsInfo = data.salesProductsInfo;
     this.createdAt = data.createdAt;
   }
 }

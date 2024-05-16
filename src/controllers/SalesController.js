@@ -32,8 +32,8 @@ class SalesController {
 
   async createSale(req, res) {
     try {
-      const salesData = salesSchema.parse(req.body);
-      const sale = await this.SalesService.createSale(salesData);
+      const saleData = salesSchema.parse(req.body);
+      const sale = await this.SalesService.createSale(saleData);
       res.status(201).json(sale);
     } catch (error) {
       res.status(400).json({ message: error.message });

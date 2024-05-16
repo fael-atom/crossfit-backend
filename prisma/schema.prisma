@@ -13,7 +13,7 @@ model User {
   email     String   @unique
   phone     String
   status    Int      @default(1)
-  adminId   Int      @default(0)  
+  adminId   Int      @default(0)
   picture   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
@@ -23,26 +23,24 @@ model User {
 }
 
 model Product {
-  id            Int    @id @default(autoincrement())
-  name          String @unique
+  id            Int      @id @default(autoincrement())
+  name          String   @unique
   type          String
   unitPrice     Float
   stockQuantity Int
   picture       String?
   createdAt     DateTime @default(now())
-  Sale          Sale[]
 
   @@map("products")
 }
 
 model Sale {
   id        Int      @id @default(autoincrement())
-  productId Int
   userId    Int
+  salesProductsInfo Json
   createdAt DateTime @default(now())
-  
-  product   Product  @relation(fields: [productId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
+
+  user              User @relation(fields: [userId], references: [id])
 
   @@map("sales")
 }
