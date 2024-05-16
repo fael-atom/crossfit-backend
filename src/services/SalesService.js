@@ -10,10 +10,15 @@ export class SalesService {
     });
   }
 
-  async getSaleById(id) {
-    const salesData = await prisma.sale.findUnique({ where: { id: id } });
-    const salesInstance = new Sales(salesData);
-    return salesInstance.getSales();
+  async getSaleByUserId(id) {
+    const salesData = await prisma.sale.findMany({
+      where: {
+        userId: id,
+      },
+    });
+    // const salesInstance = new Sales(salesData);
+    // return salesInstance.getSales();
+    return salesData;
   }
 
   async createSale(data) {

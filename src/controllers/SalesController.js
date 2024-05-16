@@ -19,14 +19,14 @@ class SalesController {
     }
   }
 
-  async getSaleById(req, res) {
+  async getSaleByUserId(req, res) {
     try {
       const id = parseInt(req.params.id);
-      const sales = await this.SalesService.getSaleById(id);
+      const sales = await this.SalesService.getSaleByUserId(id);
       return res.json(sales);
     } catch (error) {
       console.error(error);
-      return res.status(404).json({ message: "Product not found" });
+      return res.status(404).json({ message: "Vendas não encontradas." });
     }
   }
 

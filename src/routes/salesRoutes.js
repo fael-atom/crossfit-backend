@@ -15,7 +15,7 @@ salesRouter.get(
 
 salesRouter.get(
   "/:id",
-  async (req, res) => await salesController.getSaleById(req, res)
+  async (req, res) => await salesController.getSaleByUserId(req, res)
 );
 
 salesRouter.post(
