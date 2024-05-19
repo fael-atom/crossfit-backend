@@ -13,10 +13,22 @@ export const salesSchema = z.object({
       stockQuantity: z.number(),
     })
   ),
+  total: z.number(),
 });
 
 // Esquema para validação de atualização de uma venda
 export const salesUpdateSchema = z.object({
-  productId: z.number().optional(),
+  id: z.number(),
   userId: z.number().optional(),
+  salesProductsInfo: z.array(
+    z.object({
+      quantity: z.number().optional(),
+      productId: z.number().optional(),
+      name: z.string().optional(),
+      type: z.string().optional(),
+      unitPrice: z.number().optional(),
+      stockQuantity: z.number().optional(),
+    })
+  ),
+  isPaid: z.number().optional(),
 });

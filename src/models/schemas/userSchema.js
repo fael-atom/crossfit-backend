@@ -11,6 +11,8 @@ export const userSchema = z.object({
 export const userUpdateSchema = z.object({
   name: z.string().optional(),
   email: z.string().email().optional(),
-  phone: z.string().optional()
+  phone: z.string().optional(),
+  active: z.number().optional(),
+  admin: z.number().optional()
 });
 

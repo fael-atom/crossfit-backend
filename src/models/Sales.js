@@ -8,6 +8,8 @@ export class Sales {
       id: this.id,
       userId: this.userId,
       salesProductsInfo: this.salesProductsInfo,
+      total: this.total,
+      isPaid: this.isPaid,
       createdAt: this.createdAt,
     };
   }
@@ -16,6 +18,8 @@ export class Sales {
     this.id = data.id;
     this.userId = data.userId;
     this.salesProductsInfo = data.salesProductsInfo;
+    this.total = data.total;
+    this.isPaid = data.isPaid;
     this.createdAt = data.createdAt;
   }
 }
