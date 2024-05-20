@@ -8,10 +8,24 @@ import {
 const salesRouter = express.Router();
 const salesController = new SalesController();
 
-salesRouter.get(
-  "/",
-  async (req, res) => await salesController.getSales(req, res)
-);
+salesRouter.get("/", async (req, res) => {
+  const { user, isPaid, month, year, count_all } = req.query;
+
+
+  if (isPaid && user) {
+    return await salesController.getUserSalesByNotPaid(req, res);
+  }
+
+  if (count_all === "true") {
+    return await salesController.getSalesQuantity(req, res);
+  }
+  
+  if (month && year) {
+    return await salesController.getSalesByMonthYear(req, res);
+  } else {
+    return await salesController.getSales(req, res);
+  }
+});
 
 salesRouter.get(
   "/:id",
@@ -28,6 +42,11 @@ salesRouter.patch(
   "/:id",
   validateSaleUpdate,
   async (req, res) => await salesController.updateSale(req, res)
+);
+
+salesRouter.put(
+  "/:id/mark-as-paid",
+  async (req, res) => await salesController.payAllSales(req, res)
 );
 
 salesRouter.delete(

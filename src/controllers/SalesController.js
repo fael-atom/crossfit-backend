@@ -19,6 +19,16 @@ class SalesController {
     }
   }
 
+  async getSalesQuantity(req, res) {
+    try {
+      const sales = await this.SalesService.getSalesQuantity();
+      return res.json(sales);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
   async getSaleByUserId(req, res) {
     try {
       const id = parseInt(req.params.id);
@@ -27,6 +37,28 @@ class SalesController {
     } catch (error) {
       console.error(error);
       return res.status(404).json({ message: "Vendas não encontradas." });
+    }
+  }
+
+  async getUserSalesByNotPaid(req, res) {
+    try {
+      const { user, isPaid } = req.query;
+      const Users = await this.SalesService.getUserSalesByNotPaid(user, isPaid);
+      return res.json(Users);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+  async getSalesByMonthYear(req, res) {
+    try {
+      const { month, year } = req.query;
+      const sales = await this.SalesService.getSalesByMonthYear(month, year);
+      return res.json(sales);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal Server Error" });
     }
   }
 
@@ -59,6 +91,17 @@ class SalesController {
     } catch (error) {
       console.error(error);
       return res.status(404).json({ message: "Sale not found" });
+    }
+  }
+
+  async payAllSales(req, res) {
+    try {
+      const id = parseInt(req.params.id);
+      const userSales = await this.SalesService.payAllSaleByUserId(id, req.body);
+      return res.json(userSales);
+    } catch (error) {
+      console.error(error);
+      return res.status(404).json({ message: "Sales not updated" });
     }
   }
 }

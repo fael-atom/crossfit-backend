@@ -10,6 +10,21 @@ export class SalesService {
     });
   }
 
+  async getSalesQuantity() {
+    const totalSales = await prisma.sale.count();
+    const paidSales = await prisma.sale.count({
+      where: {
+        isPaid: true,
+      },
+    });
+    const unpaidSales = await prisma.sale.count({
+      where: {
+        isPaid: false,
+      },
+    });
+    return { totalSales, paidSales, unpaidSales };
+  }
+
   async getSaleByUserId(id) {
     const salesData = await prisma.sale.findMany({
       where: {
@@ -19,6 +34,38 @@ export class SalesService {
     // const salesInstance = new Sales(salesData);
     // return salesInstance.getSales();
     return salesData;
+  }
+
+  async getUserSalesByNotPaid(user, isPaid) {
+    const sales = await prisma.sale.findMany({
+      where: {
+        isPaid: {
+          equals: isPaid === "true" ? true : false,
+        },
+        userId: {
+          equals: Number(user),
+        },
+      },
+    });
+    return sales.map((sale) => {
+      const salesInstance = new Sales(sale);
+      return salesInstance.getSales();
+    });
+  }
+
+  async getSalesByMonthYear(month, year) {
+    const sales = await prisma.sale.findMany({
+      where: {
+        createdAt: {
+          gte: new Date(`${year}-${month}-01`),
+          lt: new Date(`${year}-${Number(month) + 1}-01`),
+        },
+      },
+    });
+    return sales.map((sale) => {
+      const salesInstance = new Sales(sale);
+      return salesInstance.getSales();
+    });
   }
 
   async createSale(data) {
@@ -32,6 +79,16 @@ export class SalesService {
       where: { id: id },
       data,
     });
+    const salesInstance = new Sales(salesDataUpdated);
+    return salesInstance.getSales();
+  }
+
+  async payAllSaleByUserId(id, data) {
+    const salesDataUpdated = await prisma.sale.updateMany({
+      where: { userId: id },
+      data: { isPaid: true },
+    });
+
     const salesInstance = new Sales(salesDataUpdated);
     return salesInstance.getSales();
   }
