@@ -1,5 +1,6 @@
 import { Sales } from "../models/Sales.js";
 import { prisma } from "../libs/prisma.js";
+import sendEmailConfirmation from "./sendEmailConfirmation.js";
 
 export class SalesService {
   async getSales() {
@@ -69,6 +70,15 @@ export class SalesService {
 
   async createSale(data) {
     const salesData = await prisma.sale.create({ data });
+    const { userId } = salesData;
+    const userData = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+    if (userData.email) {
+      await sendEmailConfirmation(userData, salesData);
+    }
     const salesInstance = new Sales(salesData);
     return salesInstance.getSales();
   }
