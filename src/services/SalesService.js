@@ -32,7 +32,7 @@ export class SalesService {
         },
       },
     });
-    return { totalSales, paidSales, unpaidSales };
+    return { totalSales, paidSales, unPaidSales };
   }
 
   async getUserSalesByNotPaid(userId, isPaid) {

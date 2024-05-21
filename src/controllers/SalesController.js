@@ -22,6 +22,9 @@ class SalesController {
   async getSalesQuantity(req, res) {
     try {
       const { year } = req.query;
+      if (!year) {
+        return res.status(400).json({ error: "Year parameter is required" });
+      }
       const sales = await this.SalesService.getSalesQuantity(year);
       return res.json(sales);
     } catch (error) {
@@ -33,7 +36,10 @@ class SalesController {
   async getUserSalesByNotPaid(req, res) {
     try {
       const { userId, isPaid } = req.query;
-      const Users = await this.SalesService.getUserSalesByNotPaid(userId, isPaid);
+      const Users = await this.SalesService.getUserSalesByNotPaid(
+        userId,
+        isPaid
+      );
       return res.json(Users);
     } catch (error) {
       console.error(error);
@@ -87,7 +93,10 @@ class SalesController {
   async payAllSales(req, res) {
     try {
       const id = parseInt(req.params.id);
-      const userSales = await this.SalesService.payAllSaleByUserId(id, req.body);
+      const userSales = await this.SalesService.payAllSaleByUserId(
+        id,
+        req.body
+      );
       return res.json(userSales);
     } catch (error) {
       console.error(error);
