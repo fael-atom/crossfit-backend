@@ -18,7 +18,7 @@ export const salesSchema = z.object({
 
 // Esquema para validação de atualização de uma venda
 export const salesUpdateSchema = z.object({
-  id: z.number(),
+  id: z.number().optional(),
   userId: z.number().optional(),
   salesProductsInfo: z.array(
     z.object({
@@ -29,6 +29,6 @@ export const salesUpdateSchema = z.object({
       unitPrice: z.number().optional(),
       stockQuantity: z.number().optional(),
     })
-  ),
-  isPaid: z.number().optional(),
+  ).optional(),
+  isPaid: z.boolean().optional(),
 });
