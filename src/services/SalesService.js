@@ -25,25 +25,14 @@ export class SalesService {
     return { totalSales, paidSales, unpaidSales };
   }
 
-  async getSaleByUserId(id) {
-    const salesData = await prisma.sale.findMany({
-      where: {
-        userId: id,
-      },
-    });
-    // const salesInstance = new Sales(salesData);
-    // return salesInstance.getSales();
-    return salesData;
-  }
-
-  async getUserSalesByNotPaid(user, isPaid) {
+  async getUserSalesByNotPaid(userId, isPaid) {
     const sales = await prisma.sale.findMany({
       where: {
         isPaid: {
           equals: isPaid === "true" ? true : false,
         },
         userId: {
-          equals: Number(user),
+          equals: Number(userId),
         },
       },
     });

@@ -29,21 +29,10 @@ class SalesController {
     }
   }
 
-  async getSaleByUserId(req, res) {
-    try {
-      const id = parseInt(req.params.id);
-      const sales = await this.SalesService.getSaleByUserId(id);
-      return res.json(sales);
-    } catch (error) {
-      console.error(error);
-      return res.status(404).json({ message: "Vendas não encontradas." });
-    }
-  }
-
   async getUserSalesByNotPaid(req, res) {
     try {
-      const { user, isPaid } = req.query;
-      const Users = await this.SalesService.getUserSalesByNotPaid(user, isPaid);
+      const { userId, isPaid } = req.query;
+      const Users = await this.SalesService.getUserSalesByNotPaid(userId, isPaid);
       return res.json(Users);
     } catch (error) {
       console.error(error);

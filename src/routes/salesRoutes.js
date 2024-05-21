@@ -9,14 +9,14 @@ const salesRouter = express.Router();
 const salesController = new SalesController();
 
 salesRouter.get("/", async (req, res) => {
-  const { user, isPaid, month, year, count_all } = req.query;
+  const { userId, isPaid, month, year, countAll } = req.query;
 
 
-  if (isPaid && user) {
+  if (isPaid && userId) {
     return await salesController.getUserSalesByNotPaid(req, res);
   }
 
-  if (count_all === "true") {
+  if (countAll === "true") {
     return await salesController.getSalesQuantity(req, res);
   }
   
@@ -26,11 +26,6 @@ salesRouter.get("/", async (req, res) => {
     return await salesController.getSales(req, res);
   }
 });
-
-salesRouter.get(
-  "/:id",
-  async (req, res) => await salesController.getSaleByUserId(req, res)
-);
 
 salesRouter.post(
   "/",
