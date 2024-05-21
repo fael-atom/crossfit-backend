@@ -11,15 +11,14 @@ const salesController = new SalesController();
 salesRouter.get("/", async (req, res) => {
   const { userId, isPaid, month, year, countAll } = req.query;
 
-
   if (isPaid && userId) {
     return await salesController.getUserSalesByNotPaid(req, res);
   }
 
-  if (countAll === "true") {
+  if (countAll === "true" && year) {
     return await salesController.getSalesQuantity(req, res);
   }
-  
+
   if (month && year) {
     return await salesController.getSalesByMonthYear(req, res);
   } else {

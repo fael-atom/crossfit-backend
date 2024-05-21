@@ -10,16 +10,26 @@ export class SalesService {
     });
   }
 
-  async getSalesQuantity() {
+  async getSalesQuantity(year) {
+    const startDate = new Date(`${year}-01-01`);
+    const endDate = new Date(`${year}-12-31T23:59:59.999Z`);
     const totalSales = await prisma.sale.count();
     const paidSales = await prisma.sale.count({
       where: {
         isPaid: true,
+        createdAt: {
+          gte: startDate,
+          lte: endDate,
+        },
       },
     });
-    const unpaidSales = await prisma.sale.count({
+    const unPaidSales = await prisma.sale.count({
       where: {
         isPaid: false,
+        createdAt: {
+          gte: startDate,
+          lte: endDate,
+        },
       },
     });
     return { totalSales, paidSales, unpaidSales };

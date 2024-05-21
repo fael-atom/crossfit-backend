@@ -21,7 +21,8 @@ class SalesController {
 
   async getSalesQuantity(req, res) {
     try {
-      const sales = await this.SalesService.getSalesQuantity();
+      const { year } = req.query;
+      const sales = await this.SalesService.getSalesQuantity(year);
       return res.json(sales);
     } catch (error) {
       console.error(error);
