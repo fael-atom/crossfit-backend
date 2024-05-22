@@ -11,7 +11,9 @@ class SalesController {
 
   async getSales(req, res) {
     try {
-      const sales = await this.SalesService.getSales();
+      const take = req.query.take ? parseInt(req.query.take) : undefined;
+      const skip = req.query.skip ? parseInt(req.query.skip) : undefined;
+      const sales = await this.SalesService.getSales(take, skip);
       return res.json(sales);
     } catch (error) {
       console.error(error);

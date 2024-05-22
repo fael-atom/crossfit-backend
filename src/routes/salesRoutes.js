@@ -9,7 +9,7 @@ const salesRouter = express.Router();
 const salesController = new SalesController();
 
 salesRouter.get("/", async (req, res) => {
-  const { userId, isPaid, month, year, countAll } = req.query;
+  const { userId, isPaid, month, year, countAll, take, skip } = req.query;
 
   if (isPaid && userId) {
     return await salesController.getUserSalesByNotPaid(req, res);

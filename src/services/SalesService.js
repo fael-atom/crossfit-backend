@@ -3,8 +3,19 @@ import { prisma } from "../libs/prisma.js";
 import sendEmailConfirmation from "./sendEmailConfirmation.js";
 
 export class SalesService {
-  async getSales() {
-    const sales = await prisma.sale.findMany();
+  async getSales(take, skip) {
+    const queryOptions = {
+      take,
+      skip,
+    };
+
+    if (take) {
+      queryOptions.take = take;
+    }
+    if (skip) {
+      queryOptions.skip = skip;
+    }
+    const sales = await prisma.sale.findMany(queryOptions);
     return sales.map((salesData) => {
       const salesInstance = new Sales(salesData);
       return salesInstance.getSales();
