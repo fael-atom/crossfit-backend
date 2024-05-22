@@ -22,16 +22,26 @@ export class ProductService {
     try {
       data.unitPrice = parseFloat(data.unitPrice);
       data.stockQuantity = parseInt(data.stockQuantity);
-      const productDataWithImage = { ...data, picture: `https://crossfit-backend.onrender.com/static/images/${file.filename}`};
+
+      // Verificar se o arquivo está presente antes de adicionar o link da imagem
+      const productDataWithImage = file
+        ? {
+            ...data,
+            picture: `https://crossfit-backend.onrender.com/static/images/${file.filename}`,
+          }
+        : { ...data };
+
       const productData = await prisma.product.create({
         data: productDataWithImage,
       });
+
       const productInstance = new Product(productData);
       return productInstance.getProduct();
     } catch (error) {
       throw new Error("Erro ao criar o produto: " + error.message);
     }
   }
+
   async updateProduct(id, data) {
     const productDataUpdated = await prisma.product.update({
       where: { id: id },
